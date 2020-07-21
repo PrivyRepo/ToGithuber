@@ -1,0 +1,74 @@
+<!-- 自定义顶部 -->
+<tabbar tabbar="{{tabbar}}"></tabbar>
+<include src='./cover.wxml' />
+
+<view hidden='{{modalshow}}'>
+
+  <cu-custom bgColor="bg-gradual-grey">
+    <view slot="content">Github Trending</view>
+  </cu-custom>
+
+  <view class='container' style='height:{{windowHeight}}px'>
+    <view bindtap='togglepicker' class='attach padding-sm text-center' style='bottom:80rpx'>
+      <view class='solid padding-sm round shadow ' style='background-color: rgba(0, 0, 0, 0.418);color:white'>
+        <view>
+          <text class='padding-lr-sm'>{{since[value[0]]}}</text>/
+          <text class='padding-lr-sm'>{{language[value[1]]}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view style='position:fixed;top:{{CustomBar}}px;width:100%;height:auto;background-color:white;z-index:1;'>
+      <view class=" solid-bottom  padding-top-xs padding-bottom-xs">
+        <view class="cu-bar search bg-white margin-0" style='min-height:20rpx;width:100%'>
+          <view class='search-form round margin-0'>
+            <text class="icon-search"></text>
+            <input type="text" confirm-type="search" bindconfirm="tosearch"></input>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <scroll-view scroll-y='true' style='margin-top:49px;height:{{windowHeight/10*9}}px;' scroll-top='{{topnum}}'>
+      <block wx:for="{{data}}" wx:key>
+        <view class='solid-bottom padding margin flex repoitem' bindtap='torepo' data-fullname="{{item.full_name}}">
+          <view class='flex-treble margin-right'>
+            <view class='padding-xs text-bold text-xl solid-bottom'>
+              <image src='../../icon/repo.png' style='width:34rpx;height:34rpx'></image>
+              {{item.name}}</view>
+            <view class='padding-xs text-content margin-top-sm font-ns text-lg '>{{item.description}}</view>
+          </view>
+          <view class="padding-xs text-df flex-sub grid col-1">
+            <view class=' radius font-ns' style='line-height:1.7rem;color:rgb(114,120,128)'>
+              <text class='icon-favor'></text>:{{item.stars}}</view>
+            <view class=' radius font-ns' style='line-height:1.7rem;color:rgb(114,120,128)'>
+              <text class='icon-fork'></text>:{{item.forks}}</view>
+            <view class=' radius font-ns' style='line-height:1.7rem;color:red;'>
+              <text class='icon-newshot'></text>:{{item.language?item.language:'null'}}</view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+
+    <view wx:if="{{!pickerhidden}}">
+      <view class='cover' bindtap='togglepicker' catchtouchmove="none" style='height:{{screenHeight/3*2}}rpx'>
+      </view>
+      <view class='picker'>
+        <view class=" cf padding-sm">
+          <view class='bg-grey radius fl padding-sm font-ns text-lg text-bold text-center' catchtap='togglepicker' style='min-width:100px'>cancel</view>
+
+          <view class='bg-grey radius fr padding-sm font-ns text-lg text-bold text-center' catchtap='loadchange' style='min-width:100px'>ok</view>
+        </view>
+        <picker-view indicator-style="height: 50px;" style="width: 100%; height: {{screenHeight/3}}rpx;" value="{{value}}" bindchange="pickerchange">
+          <picker-view-column>
+            <view wx:for="{{since}}" wx:key style="line-height: 50px; text-align: center;" class='font-ns'>{{item}}</view>
+          </picker-view-column>
+          <picker-view-column>
+            <view wx:for="{{language}}" wx:key style="line-height: 50px; text-align: center;" class='font-ns'> {{item}}</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+    </view>
+
+  </view>
+</view>

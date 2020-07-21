@@ -1,0 +1,37 @@
+
+<tabbar tabbar="{{tabbar}}"></tabbar>
+
+<include src="./help.wxml"/>
+
+<view class='container' style='height:{{screenHeight}}rpx'>
+  <swiper class="screen-swiper " vertical="{{true}}" current='0'>
+    <swiper-item>
+      <view class='zhelan' wx:if="{{showmodal}}"></view>
+      <view style="height:{{screenHeight}}rpx;background-image:url({{backgroundimg}});background-position:center;background-size:cover" wx:else>
+        <!-- help -->
+        <view style='position:absolute;left:10px;top:{{StatusBar}}px;height:{{CustomBar}}rpx;display:flex;flex-direction:row;' bindtap='toggleshowhelp'>
+          <image src='../../icon/help.png' style='width:{{CustomBar/10*9}}rpx'></image>
+          <text style='color:white;margin-left:5px;line-height:{{CustomBar}}rpx;'>help</text>
+        </view>
+        <view class='padding-tb-back padding radius '>
+            <view class='flex justify-between'>
+              <text class='text-white font-an padding-lr-xs' style='font-size:3.0em;line-height:200rpx'>{{motto}}</text>
+              <view class="flex justify-center padding-lr-xs">
+                <view wx:if="{{!hasUserInfo}}" open-type="getUserInfo" class='cu-avatar  round bg-write shadow size'>
+                  <button bindgetuserinfo='getUserInfo' open-type='getUserInfo' style='background-color: transparent;border:none'>
+                    <text class='text-xxl font-ns'>activate</text>
+                  </button>
+                </view>
+                <block wx:else>
+                  <view class='text-center animation-{{animation=="fade&shake"? "shake" :""}} animation-reverse' bindtap='toggle' data-class='fade&shake'>
+                    <view class="cu-avatar size round solid-bottoms " style="background-image:url({{userInfo.avatarUrl}})">
+                    </view>
+                  </view>
+                </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

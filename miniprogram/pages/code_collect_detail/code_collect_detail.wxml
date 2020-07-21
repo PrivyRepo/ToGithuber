@@ -1,0 +1,43 @@
+<import src="/towxml/entry.wxml" />
+
+<cu-custom bgColor="bg-white" isCustom="{{true}}"></cu-custom>
+<view class='translate' bindtap='toggletranslate'>
+  <image wx:if='{{showen}}' src='../../icon/ch.png' style='width:75rpx;height:75rpx'></image>
+  <image wx:else src='../../icon/en.png' style='width:80rpx;height:80rpx'></image>
+</view>
+<view class='padding-lr'>
+  <view class='solid-bottom padding-bottom-sm'>
+      <view class='text-xl padding-tb-xs text-bold' style='line-height:1.5em;width:100%;text-align:center'>
+        {{showen?problem.title:problem.ch_title}}
+      </view>
+      <view class='cf padding-top-sm'>
+        <view class='fl'>
+          <view class='flex text-bold'>
+            <view wx:for='{{tags}}' class='padding-right-xs cu-tag round  fr light font-ns' wx:key>
+            <view wx:if='index<3'>{{item.tag}}</view>
+            </view>
+          </view>
+        </view>
+        <view class='fr text-bold '>
+          <view class='cu-tag round  fr light font-ns'>{{problem.difficulty}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class='solid-bottom padding-bottom-sm'>
+    <template is="entry" data="{{...article}}" />
+    </view>
+
+    <view class='cf margin-top-lg'>
+    <view class='fl flex margin-bottom-sm'>
+        <view class='cu-tag padding-lr-lg' catchtap='gethelp' data-cur='{{problem.slug}}'>
+          <text class='icon-question padding-right-sm'> </text> help </view>
+      </view>
+      <view class='fr  margin-bottom-sm margin-right-sm' bindtap='shownote'>
+        <image src='../../icon/note.png' style='width:48rpx;height:48rpx' wx:if='{{!shownote}}'></image>
+        <image src='../../icon/note_cur.png' style='width:48rpx;height:48rpx' wx:else></image>
+      </view>
+    </view>
+
+        <textarea placeholder="" placeholder-class='placeholderclass' class='margin-tb-lg shadow' style='width:100%;border:1rpx solid grey;' bindconfirm='notecode' adjust-position='{{true}}' cursor-spacing='2' data-problemid='{{problem.id}}' value='{{inputvalue}}' wx:if="{{shownote}}"/>
+</view>

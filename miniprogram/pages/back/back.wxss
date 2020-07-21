@@ -1,0 +1,111 @@
+ button::after{ border: none; }
+ 
+.help{
+  background-color:white;
+  border-radius: 80rpx
+}
+
+.padding-tb-back {
+  position: absolute;
+  width: 100%;
+  bottom: 8%;
+  right: 0;
+  z-index: 9999;
+}
+
+.size {
+  width: 200rpx;
+  height: 200rpx;
+  background-color: rgba(252, 246, 246, 0.418);
+}
+
+.zhelan{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color: rgba(46, 43, 43, 0.118);
+  z-index:9999
+}
+
+.screen-swiper{
+  height:100%
+}
+
+[class*=animation-] {
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.animation-fade {
+  background-color: black;
+  animation-name: fade;
+  animation-duration: 3s;
+  animation-timing-function: ease-in;
+}
+
+.animation-shake {
+  animation-name: shake;
+  animation-duration: .9s;
+  animation-timing-function: ease-in;
+}
+
+.animation-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  10% {
+    transform: translateX(-9px);
+  }
+
+  20% {
+    transform: translateX(8px);
+  }
+
+  30% {
+    transform: translateX(-7px);
+  }
+
+  40% {
+    transform: translateX(6px);
+  }
+
+  50% {
+    transform: translateX(-5px);
+  }
+
+  60% {
+    transform: translateX(4px);
+  }
+
+  70% {
+    transform: translateX(-3px);
+  }
+
+  80% {
+    transform: translateX(2px);
+  }
+
+  90% {
+    transform: translateX(-1px);
+  }
+}
+
